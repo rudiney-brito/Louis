@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22222" systemVersion="23A344" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Benefit" representedClassName="Benefit" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Customer" representedClassName="Customer" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <relationship name="metadata" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Metadata"/>
+        <relationship name="record" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Record"/>
+    </entity>
+    <entity name="Metadata" representedClassName="Metadata" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="readCountRemaining" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="timeToExpire" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="Offer" representedClassName="Offer" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="Record" representedClassName="Record" syncable="YES">
+        <attribute name="headerLogo" optional="YES" attributeType="String"/>
+        <attribute name="headerLogoData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <relationship name="subscription" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Subscription"/>
+    </entity>
+    <entity name="Subscription" representedClassName="Subscription" syncable="YES">
+        <attribute name="coverImage" optional="YES" attributeType="String"/>
+        <attribute name="coverImageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="disclaimer" optional="YES" attributeType="String"/>
+        <attribute name="offerPageStyle" optional="YES" attributeType="String"/>
+        <attribute name="subscribeSubtitle" optional="YES" attributeType="String"/>
+        <attribute name="subscribeTitle" optional="YES" attributeType="String"/>
+        <relationship name="benefits" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Benefit"/>
+        <relationship name="offers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Offer"/>
+    </entity>
+</model>
