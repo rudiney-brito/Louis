@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 import Combine
 
-enum DetailsViewModelState {
+enum DetailViewModelState {
     case idle
     case loading
     case loaded(Record)
@@ -17,14 +17,14 @@ enum DetailsViewModelState {
 }
 
 protocol OfferDetailViewModelProtocol {
-    var state: CurrentValueSubject<DetailsViewModelState, Never> { get set }
+    var state: CurrentValueSubject<DetailViewModelState, Never> { get set }
     var headerLogo: PassthroughSubject<Data, Never> { get set }
     var coverImage: PassthroughSubject<Data, Never> { get set }
     func getOffer()
 }
 
 class OfferDetailViewModel: OfferDetailViewModelProtocol {
-    var state = CurrentValueSubject<DetailsViewModelState, Never>(.idle)
+    var state = CurrentValueSubject<DetailViewModelState, Never>(.idle)
     var headerLogo = PassthroughSubject<Data, Never>()
     var coverImage = PassthroughSubject<Data, Never>()
     private var subscriptions = Set<AnyCancellable>()
@@ -34,8 +34,8 @@ class OfferDetailViewModel: OfferDetailViewModelProtocol {
         self.persistentContainer = persistentContainer
     }
     
-    func getHeaderLogo(record: Record) {
-        if let headerLogo = record.headerLogo,
+    func getHeaderLogo(offer: Record) {
+        if let headerLogo = offer.headerLogo,
            let url = URL(string: headerLogo) {
             URLSession.shared.dataTaskPublisher(for: url)
                 .map(\.data)
@@ -44,13 +44,13 @@ class OfferDetailViewModel: OfferDetailViewModelProtocol {
                     switch completion {
                     case .finished:
                         break
-                    case .failure(_):
+                    case .failure(let error):
                         break
                     }
-                } receiveValue: { data in
-                    record.headerLogoData = data
-                    self.save()
-                    self.headerLogo.send(data)
+                } receiveValue: { [weak self] data in
+                    offer.headerLogoData = data
+                    self?.save()
+                    self?.headerLogo.send(data)
                 }.store(in: &subscriptions)
 
         }
@@ -69,10 +69,10 @@ class OfferDetailViewModel: OfferDetailViewModelProtocol {
                     case .failure(_):
                         break
                     }
-                } receiveValue: { data in
+                } receiveValue: { [weak self] data in
                     subscription?.coverImageData = data
-                    self.save()
-                    self.coverImage.send(data)
+                    self?.save()
+                    self?.coverImage.send(data)
                 }.store(in: &subscriptions)
 
         }
@@ -105,6 +105,7 @@ class OfferDetailViewModel: OfferDetailViewModelProtocol {
             .tryMap() { result -> Data in
                 guard let httpResponse = result.response as? HTTPURLResponse,
                       httpResponse.statusCode == 200 else {
+                    print("error")
                     throw URLError(.badServerResponse)
                 }
                 return result.data
@@ -113,18 +114,23 @@ class OfferDetailViewModel: OfferDetailViewModelProtocol {
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { completion in
-                    print("completion \(completion)")
+                    switch completion {
+                    case .finished:
+                        print("finished")
+                    case .failure(let error):
+                        print("error \(error)")
+                    }
                 },
-                receiveValue: { [weak self] record in
-                    try? self?.persistentContainer.viewContext.save()
-                    self?.state.send(.loaded(record))
-                    self?.handleResponse(record: record)
+                receiveValue: { [weak self] offer in
+                    self?.handleResponse(offer: offer)
                 }).store(in: &subscriptions)
     }
     
-    private func handleResponse(record: Record) {
-        getHeaderLogo(record: record)
-        getCoverImage(subscription: record.subscription)
+    private func handleResponse(offer: Record) {
+        save()
+        state.send(.loaded(offer))
+        getHeaderLogo(offer: offer)
+        getCoverImage(subscription: offer.subscription)
     }
     
     private func save() {

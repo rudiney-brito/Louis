@@ -21,8 +21,6 @@
 		453B48BE2C6ED23100DAEFA3 /* Subscription+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453B48B22C6ED23100DAEFA3 /* Subscription+CoreDataClass.swift */; };
 		453B48BF2C6ED23100DAEFA3 /* Subscription+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453B48B32C6ED23100DAEFA3 /* Subscription+CoreDataProperties.swift */; };
 		453F53222C6F5BAB00BEF0C0 /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F53212C6F5BAB00BEF0C0 /* Date+extension.swift */; };
-		453F53282C6F680E00BEF0C0 /* CustomerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F53272C6F680E00BEF0C0 /* CustomerRepository.swift */; };
-		458AD4042C701274000F37EB /* OfferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458AD4032C701274000F37EB /* OfferView.swift */; };
 		45B6121F2C6E8D2F00F17F0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B6121E2C6E8D2F00F17F0E /* AppDelegate.swift */; };
 		45B612212C6E8D2F00F17F0E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B612202C6E8D2F00F17F0E /* SceneDelegate.swift */; };
 		45B612232C6E8D2F00F17F0E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B612222C6E8D2F00F17F0E /* ViewController.swift */; };
@@ -50,8 +48,6 @@
 		453B48B22C6ED23100DAEFA3 /* Subscription+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subscription+CoreDataClass.swift"; sourceTree = "<group>"; };
 		453B48B32C6ED23100DAEFA3 /* Subscription+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subscription+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		453F53212C6F5BAB00BEF0C0 /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
-		453F53272C6F680E00BEF0C0 /* CustomerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerRepository.swift; sourceTree = "<group>"; };
-		458AD4032C701274000F37EB /* OfferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferView.swift; sourceTree = "<group>"; };
 		45B6121B2C6E8D2F00F17F0E /* Louis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Louis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45B6121E2C6E8D2F00F17F0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45B612202C6E8D2F00F17F0E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,8 +104,6 @@
 				45B612202C6E8D2F00F17F0E /* SceneDelegate.swift */,
 				45B612352C6E8E6700F17F0E /* OfferDetailViewController.swift */,
 				45B612442C6EB4AE00F17F0E /* OfferDetailViewModel.swift */,
-				458AD4032C701274000F37EB /* OfferView.swift */,
-				453F53272C6F680E00BEF0C0 /* CustomerRepository.swift */,
 				45B612222C6E8D2F00F17F0E /* ViewController.swift */,
 				45B612472C6EBA9100F17F0E /* managers */,
 				45B612372C6EB0B100F17F0E /* models */,
@@ -223,7 +217,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				453F53282C6F680E00BEF0C0 /* CustomerRepository.swift in Sources */,
 				453B48BE2C6ED23100DAEFA3 /* Subscription+CoreDataClass.swift in Sources */,
 				453B48B62C6ED23100DAEFA3 /* Metadata+CoreDataClass.swift in Sources */,
 				45B612232C6E8D2F00F17F0E /* ViewController.swift in Sources */,
@@ -242,7 +235,6 @@
 				453B48BA2C6ED23100DAEFA3 /* Record+CoreDataClass.swift in Sources */,
 				453B48B92C6ED23100DAEFA3 /* Benefit+CoreDataProperties.swift in Sources */,
 				453F53222C6F5BAB00BEF0C0 /* Date+extension.swift in Sources */,
-				458AD4042C701274000F37EB /* OfferView.swift in Sources */,
 				453B48B72C6ED23100DAEFA3 /* Metadata+CoreDataProperties.swift in Sources */,
 				45B612452C6EB4AE00F17F0E /* OfferDetailViewModel.swift in Sources */,
 			);

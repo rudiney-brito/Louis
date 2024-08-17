@@ -59,7 +59,7 @@ class OfferDetailViewController: UIViewController {
         return button
     }()
     
-    let benefits = UIStackView()
+    var benefits = UIStackView()
     
     let subscribeNow: UIButton = {
         let button = UIButton()
@@ -111,9 +111,8 @@ class OfferDetailViewController: UIViewController {
                 print("idle")
             case .loading:
                 print("loading")
-            case .loaded(let record):
-                print("loaded \(String(describing: record.subscription))")
-                self?.update(subscription: record.subscription)
+            case .loaded(let offer):
+                self?.update(offer: offer)
             case .error(let error):
                 print("error \(error)")
                 print(error)
@@ -131,8 +130,17 @@ class OfferDetailViewController: UIViewController {
         viewModel.getOffer()
     }
     
+    func update(offer: Record) {
+        if let data = offer.headerLogoData {
+            headerLogo.image = UIImage(data: data)
+        }
+        update(subscription: offer.subscription)
+    }
+    
     func update(subscription: Subscription?) {
-        
+        if let data = subscription?.coverImageData {
+            coverImage.image = UIImage(data: data)
+        }
         subscribeTitle.text = subscription?.subscribeTitle
         subscribeSubtitle.text = subscription?.subscribeSubtitle
         disclaimer.text = subscription?.disclaimer
@@ -194,23 +202,25 @@ class OfferDetailViewController: UIViewController {
         scrollView.addSubview(stack)
         view.addSubview(scrollView)
         
-        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
         
-        stack.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        stack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-        stack.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-        stack.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
-        stack.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-        
-//        NSLayoutConstraint.activate([
-//            secundary.topAnchor.constraint(equalTo: stack.topAnchor),
-//            secundary.bottomAnchor.constraint(equalTo: stack.bottomAnchor),
-//            secundary.leadingAnchor.constraint(equalTo: stack.leadingAnchor),
-//            secundary.trailingAnchor.constraint(equalTo: stack.trailingAnchor)
-//        ])
+        NSLayoutConstraint.activate([
+            stack.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            stack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            stack.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            stack.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            stack.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+        ])
+
+        NSLayoutConstraint.activate([
+            secundary.leadingAnchor.constraint(equalTo: stack.leadingAnchor),
+            secundary.trailingAnchor.constraint(equalTo: stack.trailingAnchor),
+        ])
     }
     
     init(viewModel: OfferDetailViewModelProtocol) {
