@@ -22,7 +22,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Offers"/>
                                 <connections>
-                                    <action selector="didTapOnDetails" destination="BYZ-38-t0r" eventType="touchUpInside" id="k4y-tq-Ryb"/>
+                                    <action selector="didTapOnOffers" destination="BYZ-38-t0r" eventType="touchUpInside" id="7CZ-OO-aGi"/>
                                 </connections>
                             </button>
                         </subviews>

@@ -9,22 +9,22 @@ import Foundation
 import CoreData
 import Combine
 
-enum DetailViewModelState {
+enum SubscriptionViewModelState {
     case idle
     case loading
     case loaded(Record)
     case error(Error)
 }
 
-protocol OfferDetailViewModelProtocol {
-    var state: CurrentValueSubject<DetailViewModelState, Never> { get set }
+protocol SubscriptionViewModelProtocol {
+    var state: CurrentValueSubject<SubscriptionViewModelState, Never> { get set }
     var headerLogo: PassthroughSubject<Data, Never> { get set }
     var coverImage: PassthroughSubject<Data, Never> { get set }
     func getOffer()
 }
 
-class OfferDetailViewModel: OfferDetailViewModelProtocol {
-    var state = CurrentValueSubject<DetailViewModelState, Never>(.idle)
+class SubscriptionViewModel: SubscriptionViewModelProtocol {
+    var state = CurrentValueSubject<SubscriptionViewModelState, Never>(.idle)
     var headerLogo = PassthroughSubject<Data, Never>()
     var coverImage = PassthroughSubject<Data, Never>()
     private var subscriptions = Set<AnyCancellable>()
@@ -80,15 +80,28 @@ class OfferDetailViewModel: OfferDetailViewModelProtocol {
     
     func getOffer() {
         state.send(.loading)
-        let request = Customer.fetchRequest()
         
-//        if let customer = try? persistentContainer.viewContext.fetch(request).first,
-//           let createdAt = customer.metadata?.createdAt,
-//           let timeToExpire = customer.metadata?.timeToExpire,
-//           createdAt.addingTimeInterval(TimeInterval(integerLiteral: timeToExpire)) >= Date() {
-//            state.send(.loaded(customer))
-//            return
+        
+//        let request = Customer.fetchRequest()
+//        
+//        if let customer = try? persistentContainer.viewContext.fetch(request).first {
+//            if let createdAt = customer.metadata?.createdAt,
+//               let timeToExpire = customer.metadata?.timeToExpire,
+//               createdAt.addingTimeInterval(TimeInterval(integerLiteral: timeToExpire)) >= Date() {
+//                state.send(.loaded(customer))
+//                return
+//            } else {
+//                persistentContainer.viewContext.delete(customer)
+//                save()
+//            }
 //        }
+        
+        let request = Record.fetchRequest()
+                
+        if let record = try? persistentContainer.viewContext.fetch(request).first {
+            state.send(.loaded(record))
+            return
+        }
         
         guard let url = URL(string: "https://take-home-task-df69e.web.app/takeHome.json") else {
             state.send(.error(NetworkError.invalidURL))
@@ -122,6 +135,7 @@ class OfferDetailViewModel: OfferDetailViewModelProtocol {
                     }
                 },
                 receiveValue: { [weak self] offer in
+                    print("received value")
                     self?.handleResponse(offer: offer)
                 }).store(in: &subscriptions)
     }

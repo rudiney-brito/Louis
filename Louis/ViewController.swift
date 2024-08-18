@@ -17,12 +17,12 @@ class ViewController: UIViewController {
     }
 
 
-    @IBAction func didTapOnDetails() {
-        let detailsViewController = OfferDetailViewController(
-            viewModel: OfferDetailViewModel(
+    @IBAction func didTapOnOffers() {
+        let subscriptionViewController = SubscriptionViewController(
+            viewModel: SubscriptionViewModel(
                 persistentContainer:(UIApplication.shared.delegate as! AppDelegate).persistentContainer)
         )
-        navigationController?.present(detailsViewController, animated: true)
+        navigationController?.present(subscriptionViewController, animated: true)
     }
 }
 
