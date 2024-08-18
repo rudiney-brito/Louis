@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 @objc(Offer)
-public class Offer: NSManagedObject, Decodable {
+public class Offer: NSManagedObject, Decodable, Identifiable {
     
     enum CodingKeys: CodingKey {
         case id, name, price

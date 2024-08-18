@@ -13,6 +13,12 @@ class OfferDetailViewController: UIViewController {
     
     let scrollView = UIScrollView()
     
+    let activityView: UIActivityIndicatorView = {
+        let activityIndicatorView = UIActivityIndicatorView()
+        activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicatorView
+    }()
+    
     let coverImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -49,6 +55,8 @@ class OfferDetailViewController: UIViewController {
         return label
     }()
     
+    let subscriptionViewController = SubscriptionViewController()
+    
     let whatIsNews: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -84,6 +92,7 @@ class OfferDetailViewController: UIViewController {
     
     let headerLogoHeight = 94.0
     let coverImageHeightMultiplier = 0.3
+    let subscriptionHeight = 160.0
     let subscribeNowHeight = 60.0
     let whatIsNewsHeight = 60.0
     
@@ -110,8 +119,9 @@ class OfferDetailViewController: UIViewController {
             case .idle:
                 print("idle")
             case .loading:
-                print("loading")
+                self?.activityView.startAnimating()
             case .loaded(let offer):
+                self?.activityView.stopAnimating()
                 self?.update(offer: offer)
             case .error(let error):
                 print("error \(error)")
@@ -147,6 +157,13 @@ class OfferDetailViewController: UIViewController {
         subscribeNow.backgroundColor = .systemBlue
         subscribeNow.isEnabled = true
         
+        if let offers = subscription?.offers {
+            for offer in offers {
+                subscriptionViewController.offers.append(offer)
+            }
+            subscriptionViewController.applySnapshot() 
+        }
+        
         if let benefits = subscription?.benefits {
             for benefit in benefits {
                 self.benefits.addArrangedSubview(makeBenefitLabel(from: benefit))
@@ -175,8 +192,9 @@ class OfferDetailViewController: UIViewController {
     
     func setup() {
         view.backgroundColor = .white
+        view.addSubview(activityView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-       
+        
         let secundary = UIStackView()
         secundary.translatesAutoresizingMaskIntoConstraints = false
         secundary.axis = .vertical
@@ -184,8 +202,16 @@ class OfferDetailViewController: UIViewController {
         secundary.layoutMargins = UIEdgeInsets(top: 16, left: 24, bottom: 16, right: 24)
         secundary.isLayoutMarginsRelativeArrangement = true
         
+        subscriptionViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        subscriptionViewController.view.backgroundColor = .red
+        
+        addChild(subscriptionViewController)
+        view.addSubview(subscriptionViewController.view)
+        subscriptionViewController.didMove(toParent: self)
+    
         secundary.addArrangedSubview(subscribeTitle)
         secundary.addArrangedSubview(subscribeSubtitle)
+        secundary.addArrangedSubview(subscriptionViewController.view)
         secundary.addArrangedSubview(whatIsNews)
         secundary.addArrangedSubview(benefits)
         secundary.addArrangedSubview(subscribeNow)
@@ -221,6 +247,18 @@ class OfferDetailViewController: UIViewController {
             secundary.leadingAnchor.constraint(equalTo: stack.leadingAnchor),
             secundary.trailingAnchor.constraint(equalTo: stack.trailingAnchor),
         ])
+        
+        NSLayoutConstraint.activate([
+            subscriptionViewController.view.leadingAnchor.constraint(equalTo: stack.leadingAnchor),
+            subscriptionViewController.view.trailingAnchor.constraint(equalTo: stack.trailingAnchor),
+            subscriptionViewController.view.heightAnchor.constraint(equalToConstant: subscriptionHeight)
+        ])
+        
+        NSLayoutConstraint.activate([
+            activityView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        
     }
     
     init(viewModel: OfferDetailViewModelProtocol) {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4500AD692C715194007364FE /* OfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4500AD682C715194007364FE /* OfferCollectionViewCell.swift */; };
 		453B48A72C6ECD7100DAEFA3 /* customer.json in Resources */ = {isa = PBXBuildFile; fileRef = 453B48A62C6ECD7100DAEFA3 /* customer.json */; };
 		453B48B42C6ED23100DAEFA3 /* Customer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453B48A82C6ED23000DAEFA3 /* Customer+CoreDataClass.swift */; };
 		453B48B52C6ED23100DAEFA3 /* Customer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453B48A92C6ED23000DAEFA3 /* Customer+CoreDataProperties.swift */; };
@@ -21,6 +22,7 @@
 		453B48BE2C6ED23100DAEFA3 /* Subscription+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453B48B22C6ED23100DAEFA3 /* Subscription+CoreDataClass.swift */; };
 		453B48BF2C6ED23100DAEFA3 /* Subscription+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453B48B32C6ED23100DAEFA3 /* Subscription+CoreDataProperties.swift */; };
 		453F53222C6F5BAB00BEF0C0 /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F53212C6F5BAB00BEF0C0 /* Date+extension.swift */; };
+		4572E49F2C7147DE00DDDDC9 /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4572E49E2C7147DE00DDDDC9 /* SubscriptionViewController.swift */; };
 		45B6121F2C6E8D2F00F17F0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B6121E2C6E8D2F00F17F0E /* AppDelegate.swift */; };
 		45B612212C6E8D2F00F17F0E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B612202C6E8D2F00F17F0E /* SceneDelegate.swift */; };
 		45B612232C6E8D2F00F17F0E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B612222C6E8D2F00F17F0E /* ViewController.swift */; };
@@ -34,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4500AD682C715194007364FE /* OfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		453B48A62C6ECD7100DAEFA3 /* customer.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = customer.json; sourceTree = "<group>"; };
 		453B48A82C6ED23000DAEFA3 /* Customer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		453B48A92C6ED23000DAEFA3 /* Customer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -48,6 +51,7 @@
 		453B48B22C6ED23100DAEFA3 /* Subscription+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subscription+CoreDataClass.swift"; sourceTree = "<group>"; };
 		453B48B32C6ED23100DAEFA3 /* Subscription+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subscription+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		453F53212C6F5BAB00BEF0C0 /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
+		4572E49E2C7147DE00DDDDC9 /* SubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewController.swift; sourceTree = "<group>"; };
 		45B6121B2C6E8D2F00F17F0E /* Louis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Louis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45B6121E2C6E8D2F00F17F0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45B612202C6E8D2F00F17F0E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +108,8 @@
 				45B612202C6E8D2F00F17F0E /* SceneDelegate.swift */,
 				45B612352C6E8E6700F17F0E /* OfferDetailViewController.swift */,
 				45B612442C6EB4AE00F17F0E /* OfferDetailViewModel.swift */,
+				4572E49E2C7147DE00DDDDC9 /* SubscriptionViewController.swift */,
+				4500AD682C715194007364FE /* OfferCollectionViewCell.swift */,
 				45B612222C6E8D2F00F17F0E /* ViewController.swift */,
 				45B612472C6EBA9100F17F0E /* managers */,
 				45B612372C6EB0B100F17F0E /* models */,
@@ -222,6 +228,7 @@
 				45B612232C6E8D2F00F17F0E /* ViewController.swift in Sources */,
 				45B612492C6EBAA700F17F0E /* NetworkManager.swift in Sources */,
 				453B48B82C6ED23100DAEFA3 /* Benefit+CoreDataClass.swift in Sources */,
+				4572E49F2C7147DE00DDDDC9 /* SubscriptionViewController.swift in Sources */,
 				453B48B52C6ED23100DAEFA3 /* Customer+CoreDataProperties.swift in Sources */,
 				45B6121F2C6E8D2F00F17F0E /* AppDelegate.swift in Sources */,
 				453B48BD2C6ED23100DAEFA3 /* Offer+CoreDataProperties.swift in Sources */,
@@ -233,6 +240,7 @@
 				453B48BC2C6ED23100DAEFA3 /* Offer+CoreDataClass.swift in Sources */,
 				453B48BB2C6ED23100DAEFA3 /* Record+CoreDataProperties.swift in Sources */,
 				453B48BA2C6ED23100DAEFA3 /* Record+CoreDataClass.swift in Sources */,
+				4500AD692C715194007364FE /* OfferCollectionViewCell.swift in Sources */,
 				453B48B92C6ED23100DAEFA3 /* Benefit+CoreDataProperties.swift in Sources */,
 				453F53222C6F5BAB00BEF0C0 /* Date+extension.swift in Sources */,
 				453B48B72C6ED23100DAEFA3 /* Metadata+CoreDataProperties.swift in Sources */,
